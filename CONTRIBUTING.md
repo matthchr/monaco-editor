@@ -102,3 +102,30 @@ Open [http://localhost:8080/monaco-editor/test/manual/?editor=src](http://localh
 # open http://localhost:8080/monaco-editor-website/
 
 ```
+
+## Rebuild and launch the local playground
+
+To test local source code changes in the playground using the dev build:
+
+```bash
+# create a local release (rebuilds from src/)
+/src/monaco-editor> npm run release
+
+# build the website (generates playground samples)
+/src/monaco-editor> npm run build-website
+
+# start the local webserver (if not already running)
+/src/monaco-editor> npm run simpleserver
+```
+
+Then open `http://localhost:8080/<clone-folder-name>/website/playground.html` (e.g.
+`http://localhost:8080/monaco-editor/website/playground.html`).
+
+> **Why this URL instead of `monaco-editor-website`?** The `monaco-editor-website/`
+> path serves a pre-built copy of the site. Using
+> `<clone-folder-name>/website/playground.html` loads the editor directly from the
+> local `release/dev/` build, so your source changes are reflected immediately
+> after re-running `npm run release`.
+
+If you only changed language/tokenizer source (under `src/`), you can skip
+`npm run build-website` and just re-run `npm run release`.
